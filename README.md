@@ -9,3 +9,4 @@ npm install
 npm run build
 ```
 ---
+[Приложение на GitHub Pages](https://klimanovnik.github.io/metalamp-task-4/)

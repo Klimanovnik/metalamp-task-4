@@ -43,7 +43,9 @@ const optimizationFunction = function () {
 module.exports = {
     context: path.resolve(__dirname, "src"),
     mode: "development",
-    entry: "./index.js",
+    entry: {
+        index: "./index.js"
+    },
     output: {
         path: path.resolve(__dirname, "app"),
         filename: isDev ? "js/[name].js" : "js/[name].[contenthash].js"
