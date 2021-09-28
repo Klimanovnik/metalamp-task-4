@@ -44,10 +44,13 @@ module.exports = {
     context: path.resolve(__dirname, "src"),
     mode: "development",
     entry: {
-        index: "./index.js"
+        "build": "./test-page/test-page.js"
+    },
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"],
     },
     output: {
-        path: path.resolve(__dirname, "app"),
+        path: path.resolve(__dirname, "dist"),
         filename: isDev ? "js/[name].js" : "js/[name].[contenthash].js"
     },
     optimization: optimizationFunction(),
@@ -66,14 +69,18 @@ module.exports = {
             jQuery: "jquery",
         }),
         new HTMLWebpackPlugin({
-            template: "./index.pug",
+            template: "./test-page/test-page.pug",
             filename: "index.html",
-            chunks: ["index"],
+            chunks: ["build"],
             minify: minifyFunction()
         })
     ],
     module: {
         rules: [
+            {
+                test: /\.(tsx|ts)$/,
+                use: "ts-loader"
+            },
             {
                 test: /\.(ico|gif|png|jpg|jpeg|svg)$/,
                 loader: "file-loader",

@@ -1,0 +1,19 @@
+// reset
+*{padding: 0px; margin: 0px; border: 0px;}
+*,*:before,*:after{-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+html,body{height: 100%; width: 100%;}
+// ---------------------------------
+
+.test-page-wrap {
+    padding: 40px;
+    height: 100%;
+}
+
+.slider-bar-wrap {
+    height: 35px;
+    margin-bottom: 40px;
+}
+
+.slider-bar-wrap:last-child {
+    margin-bottom: 0px;
+}

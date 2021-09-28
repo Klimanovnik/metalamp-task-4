@@ -7,8 +7,12 @@ html(lang="ru")
         meta(name="keywords" content="слайдер, ползунок")
         meta(name="description" content="Плагин ползунка")
         //title
-        title Slider Bar Page
+        title Slider Bar Test Page
         //favicon
-        include ./favicon/favicon.pug
+        link(rel="icon" href=require("./favicon.svg").default type="image/icon")
     body
-        div(class="wrap" id="wrap") Test text
+        div(class="test-page-wrap")
+            div(class="slider-bar-wrap")
+            div(class="slider-bar-wrap")
+            div(class="slider-bar-wrap")
+            div(class="slider-bar-wrap")

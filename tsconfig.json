@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strictNullChecks": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "files": [
+    "./src/slider-bar/slider-bar.ts"
+  ]
+}
