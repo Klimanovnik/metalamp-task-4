@@ -10,15 +10,20 @@ jQuery.fn.sliderBar = function (options: object): JQuery {
         // Отрисовка слайдера внутри контейнера
 
         currentWrap.html(`<div class="slider-bar">
-                            <div class="slider-bar__line"></div>
-                            <div class="slider-bar__progress"></div>
+                            <div class="slider-bar__line">
+                                <div class="slider-bar__progress"></div>
+                            </div>
                             <div class="slider-bar__scroll"></div>
                         </div>`);
 
         // Назначение ширины скроллу
 
         const currentScroll = currentWrap.find(".slider-bar__scroll");
-        currentScroll.width(<number>currentScroll.height() * 0.5);
+        currentScroll.width(<number>currentScroll.height() * 1);
+
+        // Data-атрибут с шириной слайдера
+        const currentSlider = currentWrap.find(".slider-bar");
+        currentSlider[0].dataset.width = currentSlider[0].offsetWidth + "";
 
         // Назначение обработчиков скроллу
 
@@ -46,7 +51,8 @@ jQuery.fn.sliderBar = function (options: object): JQuery {
                     offset = maxOffset;
                 }
 
-                thatProgress.style.width = thatScroll.style.left = offset + "px";
+                thatScroll.style.left = offset + "px";
+                thatProgress.style.width = parseFloat(thatScroll.style.left) + thatScroll.offsetWidth / 2 + "px";
             };
 
             thatScroll.addEventListener("pointermove", onPointerMove);
@@ -63,5 +69,25 @@ jQuery.fn.sliderBar = function (options: object): JQuery {
 
     };
 
-    return this.each(initialize);
+    this.each(initialize);
+
+    // Обработчик window resize
+
+    $(window).on("resize", function () {
+
+        $(".slider-bar").each(function () {
+            const ratio = this.offsetWidth / parseFloat(<string>this.dataset.width);
+
+            const currentProgress = <HTMLElement>this.querySelector(".slider-bar__progress");
+            const currentScroll = <HTMLElement>this.querySelector(".slider-bar__scroll");
+
+            currentScroll.style.left = parseFloat(currentScroll.style.left) * ratio + "px";
+            currentProgress.style.width = parseFloat(currentScroll.style.left) + currentScroll.offsetWidth / 2 + "px";
+
+            this.dataset.width = this.offsetWidth + "";
+        });
+
+    });
+
+    return this;
 };
