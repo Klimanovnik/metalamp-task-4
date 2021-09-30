@@ -82,6 +82,11 @@ jQuery.fn.sliderBar = function (options: object): JQuery {
             const currentScroll = <HTMLElement>this.querySelector(".slider-bar__scroll");
 
             currentScroll.style.left = parseFloat(currentScroll.style.left) * ratio + "px";
+
+            if (parseFloat(currentScroll.style.left) > this.offsetWidth - currentScroll.offsetWidth) {
+                currentScroll.style.left = this.offsetWidth - currentScroll.offsetWidth + "px";
+            }
+
             currentProgress.style.width = parseFloat(currentScroll.style.left) + currentScroll.offsetWidth / 2 + "px";
 
             this.dataset.width = this.offsetWidth + "";
