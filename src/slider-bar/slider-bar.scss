@@ -28,25 +28,14 @@
     z-index: 3;
 }
 
-.slider-bar__circle {
+.slider-bar__scroll {
     background-color: #414141;
     position: absolute;
     height: 100%;
-    width: 1%;
+    max-width: 100%;
     top: 0px;
     left: 0px;
     z-index: 4;
     cursor: pointer;
-    @media (max-width: 1800px) {
-        width: 2%;
-    }
-    @media (max-width: 1100px) {
-        width: 3%;
-    }
-    @media (max-width: 800px) {
-        width: 5%;
-    }
-    @media (max-width: 500px) {
-        width: 7%;
-    }
+    touch-action: none;
 }
